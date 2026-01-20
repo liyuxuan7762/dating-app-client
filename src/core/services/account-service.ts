@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { tap } from 'rxjs';
+import { User } from '../../types/User';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +13,14 @@ export class AccountService {
 
   private httpClient = inject(HttpClient);
 
+  currentUser = signal<User | null>(null);
+
   login(creds: any) {
-    return this.httpClient.post(`${this.baseUrl}/account/login`, creds);
+    return this.httpClient.post<User>(`${this.baseUrl}/account/login`, creds).pipe(
+      tap(user => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.currentUser.set(user);
+      })
+    );
   }
 }
