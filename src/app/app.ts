@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { single } from 'rxjs';
+import { Nav } from "../layout/nav/nav";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [Nav],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
