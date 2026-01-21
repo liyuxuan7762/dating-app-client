@@ -2,14 +2,23 @@
     <div class="card-title justify-center text-3xl text-primary">Sign Up</div>
     <div class="card-body w-full">
         <form #registerForm="ngForm" class="flex flex-col gap-4 w-full" (ngSubmit)="onSubmit()">
-            <input [(ngModel)] = "creds.displayName" name="displayName" class="input w-full" placeholder="Display Name">
-            <input [(ngModel)] = "creds.email" name="email" class="input w-full" placeholder="Email">
-            <input type="password" [(ngModel)] = "creds.password" name="password" class="input w-full" placeholder="Password">
+            <input [(ngModel)]="creds.displayName" name="displayName" class="input w-full" placeholder="Display Name">
+            <input [(ngModel)]="creds.email" name="email" class="input w-full" placeholder="Email">
+            <input type="password" [(ngModel)]="creds.password" name="password" class="input w-full"
+                placeholder="Password">
+
+            <select class="select select-bordered w-full">
+                @for (item of this.userFromHome(); track $index) {
+                <option value="{{item.id}}">{{item.displayName}}</option>
+                }
+            </select>
 
             <div class="flex items-center justify-end gap-3">
                 <button type="submit" class="btn btn-primary">Sign Up</button>
                 <button type="button" class="btn btn-accent" (click)="onCancel()">Cancel</button>
             </div>
+
+
         </form>
     </div>
 </div>

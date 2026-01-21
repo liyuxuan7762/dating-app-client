@@ -3,6 +3,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { Nav } from "../layout/nav/nav";
 import { AccountService } from '../core/services/account-service';
 import { Home } from "../features/home/home";
+import { User } from '../types/user';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +15,13 @@ import { Home } from "../features/home/home";
 export class App implements OnInit {
 
   private httpClient = inject(HttpClient);
-  protected members = signal<any>([]);
+  protected members = signal<User[]>([]);
   protected title = 'client';
 
   private accountService = inject(AccountService);
 
   ngOnInit(): void {
-    this.httpClient.get('https://localhost:5001/api/Members').subscribe({
+    this.httpClient.get<User[]>('https://localhost:5001/api/Members').subscribe({
       next: resp => this.members.set(resp),
       error: err => console.log(err),
       complete: () => console.log('Http Request Completed')
