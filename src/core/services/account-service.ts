@@ -1,7 +1,15 @@
+/*
+ * @Author: Leo lyx776239423@gmail.com
+ * @Date: 2026-01-21 14:05:41
+ * @LastEditors: Leo lyx776239423@gmail.com
+ * @LastEditTime: 2026-01-21 14:37:26
+ * @FilePath: \dating-app-client\src\core\services\account-service.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { tap } from 'rxjs';
-import { User } from '../../types/User';
+import { User } from '../../types/user'
 
 @Injectable({
   providedIn: 'root',
@@ -22,5 +30,10 @@ export class AccountService {
         this.currentUser.set(user);
       })
     );
+  }
+
+  logout() {
+    this.currentUser.set(null);
+    localStorage.removeItem('user');
   }
 }
