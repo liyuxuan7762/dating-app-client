@@ -8,4 +8,8 @@
 -->
 <app-nav />
 
-<app-home [userFromApp]="this.members()" />
+<!-- [ngClass]="{'container mt-24 mx-auto': router.url !== '/'} -->
+
+<div [class.container]="router.url !== '/'" [class.mt-24]="router.url !== '/'" [class.mx-auto]="router.url !== '/'">
+  <router-outlet></router-outlet>
+</div>
