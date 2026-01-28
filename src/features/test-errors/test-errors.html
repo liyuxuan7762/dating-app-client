@@ -1,0 +1,21 @@
+<div class="card bg-base-100 w-1/2 mx-auto flex flex-col p-6 rounded-lg shadow-lg">
+  <div class="card-title justify-center text-3xl text-primary">Test Errors</div>
+  <div class="card-body w-full">
+    <div class="flex flex-col gap-4 w-full">
+      <button class="btn btn-primary" (click)="get401Error()">Get 401 Error</button>
+      <button class="btn btn-accent" (click)="get404Error()">Get 404 Error</button>
+      <button class="btn btn-info" (click)="get500Error()">Get 500 Error</button>
+      <button class="btn btn-success" (click)="get400ValidationError()">Get Validation Error</button>
+      <button class="btn btn-warning" (click)="get400Error()">Get 400 Error</button>
+    </div>
+  </div>
+
+  <div class="card justify-center items-center w-full rounded-lg shadow-lg">
+    <ul class="list-disc list-inside">
+      @for (error of modalStateErrors(); track $index) {
+      <li>{{ error }}</li>
+      }
+    </ul>
+  </div>
+
+</div>
