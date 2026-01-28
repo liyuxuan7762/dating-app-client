@@ -12,13 +12,14 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { InitService } from '../core/services/init-service';
 import { lastValueFrom } from 'rxjs';
 import { errorInterceptor } from '../core/interceptors/error-interceptor';
+import { jwtInterceptor } from '../core/interceptors/jwt-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes, withViewTransitions()),
-    provideHttpClient(withInterceptors([errorInterceptor])),
+    provideHttpClient(withInterceptors([errorInterceptor, jwtInterceptor])),
     provideAppInitializer(() => {
       // Angular 的启动机制规定：如果 APP_INITIALIZER 返回了一个 Promise，
       // Angular 就会暂停启动，一直等到这个 Promise resolve 之后，才开始渲染页面。

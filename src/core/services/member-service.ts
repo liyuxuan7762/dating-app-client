@@ -14,25 +14,14 @@ export class MemberService {
   private apiUrl = environment.apiUrl;
 
   getMembers() {
-    return this.httpClient.get<Member[]>(this.apiUrl + '/members', this.getHttpOptions());
+    return this.httpClient.get<Member[]>(this.apiUrl + '/members');
   }
 
   getMemberById(id: string) {
-    return this.httpClient.get<Member>(this.apiUrl + '/members/' + id, this.getHttpOptions());
+    return this.httpClient.get<Member>(this.apiUrl + '/members/' + id);
   }
 
   getPhotosForMember(id: string) {
-    return this.httpClient.get<Photo[]>(
-      this.apiUrl + '/members/' + id + '/photos',
-      this.getHttpOptions(),
-    );
-  }
-
-  private getHttpOptions() {
-    return {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + this.accountService.currentUser()?.token,
-      }),
-    };
+    return this.httpClient.get<Photo[]>(this.apiUrl + '/members/' + id + '/photos');
   }
 }

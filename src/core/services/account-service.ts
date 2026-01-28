@@ -27,7 +27,7 @@ export class AccountService {
       tap((user) => {
         console.log(user);
         this.setCurrentUser(user);
-      })
+      }),
     );
   }
 
@@ -35,13 +35,15 @@ export class AccountService {
     return this.httpClient.post<User>(`${this.baseUrl}/account/register`, creds).pipe(
       tap((user) => {
         this.setCurrentUser(user);
-      })
+      }),
     );
   }
 
   setCurrentUser(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUser.set(user);
+    console.log('currentUser', this.currentUser());
+    console.log('imageUrl', this.currentUser()?.imageUrl);
   }
 
   logout() {
