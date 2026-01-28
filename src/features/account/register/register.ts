@@ -1,4 +1,12 @@
-import { Component, inject, input, output, signal } from '@angular/core';
+/*
+ * @Author: Leo lyx776239423@gmail.com
+ * @Date: 2026-01-21 16:35:01
+ * @LastEditors: Leo lyx776239423@gmail.com
+ * @LastEditTime: 2026-01-22 23:55:13
+ * @FilePath: \dating-app-client\src\features\account\register\register.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
+import { Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RegisterCreds, User } from '../../../types/user';
 import { AccountService } from '../../../core/services/account-service';
